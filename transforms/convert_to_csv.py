@@ -3,11 +3,23 @@ import os
 
 files = ['CanalDeVenta.xlsx', 'Empleados.xls', 'productos.xlsx', 'Proveedores.xlsx']
 
-# Convert the files to lab01
+input_dir = os.path.join('.', 'data', 'sources', 'excels')
+output_dir = os.path.join('.', 'data', 'outputs', 'converted', 'csv')
+
 for file in files:
-    input_path = '.\\data\\sources\\excels\\' + file
-    filename = file.split('.')[0]
-    output_csv_path = '.\\data\\outputs\\converted\\csv\\' + filename + '.csv'
+    input_path = os.path.join(input_dir, file)
+    filename = os.path.splitext(file)[0]  
+    output_csv_path = os.path.join(output_dir, filename + '.csv')
+    
     os.makedirs(os.path.dirname(output_csv_path), exist_ok=True)
-    df = pd.read_excel(input_path)  
-    df.to_csv(output_csv_path, index=False) 
+    
+    file_extension = os.path.splitext(file)[1].lower()
+    if file_extension == '.xlsx':
+        df = pd.read_excel(input_path, engine='openpyxl')
+    elif file_extension == '.xls':
+        df = pd.read_excel(input_path, engine='xlrd')
+    else:
+        print(f"Unsupported file format: {file}")
+        continue
+    
+    df.to_csv(output_csv_path, index=False)

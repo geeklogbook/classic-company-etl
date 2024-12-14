@@ -1,4 +1,5 @@
-DROP DATABASE base_negocio;
+-- Active: 1733584034222@@127.0.0.1@3307
+DROP DATABASE IF EXISTS base_negocio;
 CREATE DATABASE IF NOT EXISTS base_negocio;
 USE base_negocio;
 
@@ -113,9 +114,9 @@ CREATE TABLE IF NOT EXISTS empleado (
 	Salario2					VARCHAR(30)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
-DROP TABLE comentarios;
-CREATE TABLE comentarios (
-    ID_PRODUCTO INT,
-    Comentario TEXT,
-    Fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
+-- DROP TABLE IF EXISTS comentarios;
+-- CREATE TABLE comentarios (
+--     ID_PRODUCTO INT,
+--     Comentario TEXT,
+--     Fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+-- );
