@@ -1,4 +1,4 @@
-USE base_negocio
+USE base_negocio;
 
 -- CSV File
 LOAD DATA INFILE 'C:\\Users\\h\\Documents\\geeklogbook\\data-engineering\\data\\lab01\\begin\\Clientes.csv'
@@ -58,5 +58,10 @@ LINES TERMINATED BY '\n' IGNORE 1 LINES;
 
 LOAD DATA INFILE 'C:\\Users\\h\\Documents\\geeklogbook\\data-engineering\\data\\lab01\\begin\\converted\\CanalDeVenta.csv'  
 INTO TABLE `canal_venta` 
+FIELDS TERMINATED BY ',' ENCLOSED BY '\"'
+LINES TERMINATED BY '\n' IGNORE 1 LINES;
+
+LOAD DATA INFILE 'C:\\Users\\h\\Documents\\geeklogbook\\data-engineer-playground\\data\\comentarios_20241207.csv'  
+INTO TABLE `comentarios` 
 FIELDS TERMINATED BY ',' ENCLOSED BY '\"'
 LINES TERMINATED BY '\n' IGNORE 1 LINES;

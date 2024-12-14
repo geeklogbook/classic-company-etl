@@ -1,18 +1,15 @@
 # You need to install: https://dev.mysql.com/downloads/file/?id=534712
+#Add-Type -Path "C:\Program Files (x86)\MySQL\MySQL Connector NET 9.1\MySql.Data.dll"
 
-# MySQL Connection Information
 $server = "localhost"
 $database = "base_negocio"
 $user = "root"
 
-
-# SQL Query
 $query = "SELECT * FROM cargo"
 
-# MySQL Connection String
+
 $connStr = "server=$server;user=$user;database=$database;password=$password;"
 
-# Create MySQL Connection
 $conn = New-Object MySql.Data.MySqlClient.MySqlConnection($connStr)
 
 try {
@@ -22,10 +19,8 @@ try {
     $cmd = $conn.CreateCommand()
     $cmd.CommandText = $query
 
-    # Execute the query and read the data
     $reader = $cmd.ExecuteReader()
 
-    # Collect rows for better output formatting
     $results = @()
     while ($reader.Read()) {
         $row = @{}
@@ -36,7 +31,6 @@ try {
     }
     $reader.Close()
 
-    # Display results in a table format
     Write-Host "`nQuery Results:`n" -ForegroundColor Cyan
     $results | Format-Table -AutoSize
 } catch {

@@ -113,3 +113,9 @@ CREATE TABLE IF NOT EXISTS empleado (
 	Salario2					VARCHAR(30)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
+DROP TABLE comentarios;
+CREATE TABLE comentarios (
+    ID_PRODUCTO INT,
+    Comentario TEXT,
+    Fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
