@@ -2,7 +2,7 @@ import csv
 import re
 from collections import Counter
 
-file_path = r"C:\Users\h\Documents\geeklogbook\data-engineer-playground\data\comentarios_20241207.csv"
+file_path = r".\\data\\sources\\comentarios_20241207.csv"
 
 #MAP
 def map_func(comentario):
