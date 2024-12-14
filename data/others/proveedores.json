@@ -1,0 +1,126 @@
+{
+    "Proveedor": {
+      "IDProveedor": 1,
+      "Nombre": "Bereguestein",
+      "Address": "BEREGUESTEIN 36",
+      "Ciudad_Provincia": "Avellaneda, Buenos Aires",
+      "Estado": "Buenos Aires",
+      "Pais": "Argentina",
+      "Departamento": "Avellaneda"
+    },
+    "Proveedor2": {
+      "IDProveedor": 2,
+      "Nombre": "San Cirano",
+      "Direcciones": [
+        {
+          "Address": "ALBERTI 965",
+          "Ciudad_Provincia": "Coronel Brandsen, Buenos Aires",
+          "Estado": "Buenos Aires",
+          "Pais": "Argentina",
+          "Departamento": "Brandsen"
+        },
+        {
+          "Address": "ALBERTI 970",
+          "Ciudad_Provincia": "La Plata, Buenos Aires",
+          "Estado": "Buenos Aires",
+          "Pais": "Argentina",
+          "Departamento": "La Plata"
+        }
+      ]
+    },
+    "Proveedor3": {
+      "IDProveedor": 3,
+      "Nombre": "Bell S.A.",
+      "Address": "MORENO 331",
+      "Ciudad_Provincia": "Campana, Buenos Aires",
+      "Estado": "Buenos Aires",
+      "Pais": "Argentina",
+      "Departamento": "Campana",
+      "Compras": [
+        {
+          "IDCompra": 1001,
+          "Producto": "Papel A4",
+          "Cantidad": 500,
+          "PrecioUnitario": 10.5,
+          "FechaCompra": "2024-11-01"
+        },
+        {
+          "IDCompra": 1002,
+          "Producto": "Toner",
+          "Cantidad": 10,
+          "PrecioUnitario": 150.0,
+          "FechaCompra": "2024-11-10"
+        }
+      ]
+    },
+    "Proveedor4": {
+      "IDProveedor": 4,
+      "Nombre": "Rivero Insumos",
+      "Ubicaciones": [
+        {
+          "Address": "PTE. PERON 3872",
+          "Ciudad_Provincia": "Valentin Alsina, Buenos Aires",
+          "Estado": "Buenos Aires",
+          "Pais": "Argentina",
+          "Departamento": "Lanus"
+        },
+        {
+          "Address": "PTE. PERON 3880",
+          "Ciudad_Provincia": "Lanus, Buenos Aires",
+          "Estado": "Buenos Aires",
+          "Pais": "Argentina",
+          "Departamento": "Lanus"
+        }
+      ]
+    },
+    "Proveedor5": {
+      "IDProveedor": 5,
+      "Nombre": "Laprida Computacion",
+      "Address": "AVDA. PEDRO PEREYRA 1339",
+      "Ciudad_Provincia": "Laprida, Buenos Aires",
+      "Estado": "Buenos Aires",
+      "Pais": "Argentina",
+      "Departamento": "Laprida",
+      "Inventario": [
+        {
+          "IDProducto": 2001,
+          "Producto": "Computadora de Escritorio",
+          "StockDisponible": 100,
+          "EstadoProducto": "Disponible",
+          "FechaIngreso": "2024-05-01"
+        },
+        {
+          "IDProducto": 2002,
+          "Producto": "Teclado Inalámbrico",
+          "StockDisponible": 50,
+          "EstadoProducto": "Bajo Stock",
+          "FechaIngreso": "2024-06-15"
+        }
+      ]
+    },
+    "Proveedor6": {
+      "IDProveedor": 6,
+      "Nombre": "Importadora Mann Kloss",
+      "Address": "LOPE DE VEGA 2102",
+      "Ciudad_Provincia": "Boca de Atencion Monte Castro, CABA",
+      "Estado": "CABA",
+      "Pais": "Argentina",
+      "Departamento": "Comuna 10",
+      "Proyectos": [
+        {
+          "IDProyecto": 3001,
+          "NombreProyecto": "Renovación de Equipos",
+          "Responsables": ["Juan Pérez", "Ana Gómez"],
+          "FechaInicio": "2024-01-10",
+          "FechaFin": "2024-07-10"
+        },
+        {
+          "IDProyecto": 3002,
+          "NombreProyecto": "Expansión Logística",
+          "Responsables": ["Carlos Ruiz", "Laura García"],
+          "FechaInicio": "2024-03-05",
+          "FechaFin": "2024-11-15"
+        }
+      ]
+    }
+  }
