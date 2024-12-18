@@ -1,3 +1,4 @@
+USE base_negocio;
 SELECT 'canal_venta' AS tabla, (SELECT COUNT(*) FROM canal_venta) AS HasData
 UNION
 SELECT 'cliente' AS tabla, (SELECT COUNT(*) FROM cliente) AS HasData

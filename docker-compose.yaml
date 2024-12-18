@@ -4,6 +4,7 @@ version: '3.1'
 services:
   db:
     image: mysql
+    container_name: sales-database
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: example
@@ -11,3 +12,33 @@ services:
       - "3307:3306"  # Puerto externo a 3307
     volumes:
       - ./my.cnf:/etc/mysql/my.cnf 
+      
+  data-lake:
+    image: docker.io/bitnami/minio:2024
+    container_name: sales-datalake
+    ports:
+      - '9000:9000'
+      - '9001:9001'
+    volumes:
+      - 'minio_data:/bitnami/minio/data'
+    environment:
+      - MINIO_ROOT_USER=minio-root-user
+      - MINIO_ROOT_PASSWORD=minio-root-password
+
+  portainer:
+    image: portainer/portainer-ce:latest
+    container_name: sales-portainer
+    restart: always
+    ports:
+      - "9002:9000"
+    environment:
+      - ADMIN_PASSWORD=hashgenerado
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
+
+volumes:
+  minio_data:
+    driver: local
+  portainer_data:
+    driver: local
