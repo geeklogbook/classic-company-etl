@@ -1,24 +1,15 @@
+USE base_negocio_landing;
 -- 1. **Column Renaming**
-ALTER TABLE `cliente` CHANGE `ID` `IdCliente` INT(11) NOT NULL;
 ALTER TABLE `empleado` CHANGE `IDEmpleado` `IdEmpleado` INT(11) NULL DEFAULT NULL;
 ALTER TABLE `proveedor` CHANGE `IDProveedor` `IdProveedor` INT(11) NULL DEFAULT NULL;
 ALTER TABLE `sucursal` CHANGE `ID` `IdSucursal` INT(11) NULL DEFAULT NULL;
-ALTER TABLE `tipo_gasto` CHANGE `Descripcion` `Tipo_Gasto` VARCHAR(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL;
 ALTER TABLE `producto` CHANGE `IDProducto` `IdProducto` INT(11) NULL DEFAULT NULL;
 ALTER TABLE `producto` CHANGE `Concepto` `Producto` VARCHAR(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NULL DEFAULT NULL;
 
 -- 2. **Data Type Modifications**
-ALTER TABLE `cliente` ADD `Latitud` DECIMAL(13,10) NOT NULL DEFAULT '0' AFTER `Y`, 
-                      ADD `Longitud` DECIMAL(13,10) NOT NULL DEFAULT '0' AFTER `Latitud`;
-UPDATE cliente SET Y = '0' WHERE Y = '';
-UPDATE cliente SET X = '0' WHERE X = '';
-UPDATE cliente SET Latitud = REPLACE(Y,',','.');
-UPDATE cliente SET Longitud = REPLACE(X,',','.');
-ALTER TABLE cliente DROP `Y`;
-ALTER TABLE cliente DROP `X`;
-
 ALTER TABLE `empleado` ADD `Salario` DECIMAL(10,2) NOT NULL DEFAULT '0' AFTER `Salario2`;
-UPDATE `empleado` SET Salario = Salario2;
+UPDATE `empleado` SET `Salario` = IFNULL(`Salario2`, 0);
+UPDATE `empleado` SET `Salario` = `Salario2` WHERE `Salario2` IS NOT NULL;
 ALTER TABLE `empleado` DROP `Salario2`;
 
 ALTER TABLE `producto` ADD `Precio` DECIMAL(15,3) NOT NULL DEFAULT '0' AFTER `Precio2`;
@@ -35,14 +26,8 @@ ALTER TABLE `sucursal` DROP `Longitud2`;
 UPDATE `venta` SET `Precio` = 0 WHERE `Precio` = '';
 ALTER TABLE `venta` CHANGE `Precio` `Precio` DECIMAL(15,3) NOT NULL DEFAULT '0';
 
--- 3. **Column Drop (Unused Columns)**
-ALTER TABLE `cliente` DROP `col10`;
 
 -- 4. **Imputation of Missing Values**
-UPDATE `cliente` SET Domicilio = 'Sin Dato' WHERE TRIM(Domicilio) = "" OR ISNULL(Domicilio);
-UPDATE `cliente` SET Localidad = 'Sin Dato' WHERE TRIM(Localidad) = "" OR ISNULL(Localidad);
-UPDATE `cliente` SET Nombre_y_Apellido = 'Sin Dato' WHERE TRIM(Nombre_y_Apellido) = "" OR ISNULL(Nombre_y_Apellido);
-UPDATE `cliente` SET Provincia = 'Sin Dato' WHERE TRIM(Provincia) = "" OR ISNULL(Provincia);
 
 UPDATE `empleado` SET Apellido = 'Sin Dato' WHERE TRIM(Apellido) = "" OR ISNULL(Apellido);
 UPDATE `empleado` SET Nombre = 'Sin Dato' WHERE TRIM(Nombre) = "" OR ISNULL(Nombre);
@@ -66,24 +51,16 @@ UPDATE `sucursal` SET Provincia = 'Sin Dato' WHERE TRIM(Provincia) = "" OR ISNUL
 UPDATE `sucursal` SET Localidad = 'Sin Dato' WHERE TRIM(Localidad) = "" OR ISNULL(Localidad);
 
 -- 5. **Normalization to Capitalized Letters**
-UPDATE cliente SET Domicilio = UC_Words(TRIM(Domicilio)),
-                    Nombre_y_Apellido = UC_Words(TRIM(Nombre_y_Apellido));
 
-UPDATE cliente SET Localidad = UC_Words(TRIM(Localidad));
+UPDATE sucursal SET Domicilio = UC_Words(TRIM(Domicilio)), Sucursal = UC_Words(TRIM(Sucursal));
 
-UPDATE sucursal SET Domicilio = UC_Words(TRIM(Domicilio)),
-                    Sucursal = UC_Words(TRIM(Sucursal));
+UPDATE proveedor SET Nombre = UC_Words(TRIM(Nombre)), Domicilio = UC_Words(TRIM(Domicilio));
 
-UPDATE proveedor SET Nombre = UC_Words(TRIM(Nombre)),
-                    Domicilio = UC_Words(TRIM(Domicilio));
-
-UPDATE proveedor SET Ciudad = UC_Words(TRIM(Ciudad)),
-                    Provincia = UC_Words(TRIM(Provincia));
+UPDATE proveedor SET Ciudad = UC_Words(TRIM(Ciudad)), Provincia = UC_Words(TRIM(Provincia));
 
 UPDATE producto SET Producto = UC_Words(TRIM(Producto));
 
-UPDATE empleado SET Nombre = UC_Words(TRIM(Nombre)),
-                    Apellido = UC_Words(TRIM(Apellido));
+UPDATE empleado SET Nombre = UC_Words(TRIM(Nombre)), Apellido = UC_Words(TRIM(Apellido));
 
 -- 6. **Sales Table Data Cleaning and Normalization**
 UPDATE venta v JOIN producto p ON (v.IdProducto = p.IdProducto)
@@ -159,8 +136,6 @@ SELECT DISTINCT Sector FROM empleado WHERE Sector NOT IN (SELECT Sector FROM sec
 ALTER TABLE `empleado` ADD `IdCargo` INT NULL AFTER `Cargo`, 
                          ADD `IdSector` INT NULL AFTER `Sector`;
 
-UPDATE empleado e JOIN cargo c ON (e.Cargo = c.Cargo)
-SET e.IdCargo = c.IdCargo;
+UPDATE empleado e JOIN cargo c ON (e.Cargo = c.Cargo) SET e.IdCargo = c.IdCargo;
 
-UPDATE empleado e JOIN sector s ON (e.Sector = s.Sector)
-SET e.IdSector = s.IdSector;
+UPDATE empleado e JOIN sector s ON (e.Sector = s.Sector) SET e.IdSector = s.IdSector;

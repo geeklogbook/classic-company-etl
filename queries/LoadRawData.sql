@@ -1,4 +1,4 @@
-USE base_negocio;
+USE base_negocio_landing;
 
 -- CSV File
 LOAD DATA LOCAL INFILE '/home/ubuntu/data-engineer-playground/data/sources/csv/Clientes.csv'
@@ -61,8 +61,3 @@ INTO TABLE canal_venta
 CHARACTER SET utf8
 FIELDS TERMINATED BY ';' ENCLOSED BY '\"' ESCAPED BY '\"'
 LINES TERMINATED BY '\n' IGNORE 1 LINES;
-
--- LOAD DATA INFILE '/home/ubuntu/data-engineer-playground/data/outputs/converted/csv/comentarios_20241207.csv'  
--- INTO TABLE `comentarios` 
--- FIELDS TERMINATED BY ',' ENCLOSED BY '\"'
--- LINES TERMINATED BY '\n' IGNORE 1 LINES;

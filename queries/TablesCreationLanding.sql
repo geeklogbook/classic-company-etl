@@ -1,11 +1,10 @@
 -- Active: 1733584034222@@127.0.0.1@3307
-DROP DATABASE IF EXISTS base_negocio;
-CREATE DATABASE IF NOT EXISTS base_negocio;
-USE base_negocio;
+DROP DATABASE IF EXISTS base_negocio_landing;
+CREATE DATABASE IF NOT EXISTS base_negocio_landing;
+USE base_negocio_landing;
 
-/*Importacion de las tablas*/
-DROP TABLE IF EXISTS `gasto`;
-CREATE TABLE IF NOT EXISTS `gasto` (
+DROP TABLE IF EXISTS gasto;
+CREATE TABLE IF NOT EXISTS gasto (
   	`IdGasto` 		INTEGER,
   	`IdSucursal` 	INTEGER,
   	`IdTipoGasto` 	INTEGER,
@@ -13,8 +12,8 @@ CREATE TABLE IF NOT EXISTS `gasto` (
   	`Monto` 		DECIMAL(10,2)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
-DROP TABLE IF EXISTS `compra`;
-CREATE TABLE IF NOT EXISTS `compra` (
+DROP TABLE IF EXISTS compra;
+CREATE TABLE IF NOT EXISTS compra (
   `IdCompra`			INTEGER,
   `Fecha` 				DATE,
   `IdProducto`			INTEGER,
@@ -23,8 +22,8 @@ CREATE TABLE IF NOT EXISTS `compra` (
   `IdProveedor`			INTEGER
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
-DROP TABLE IF EXISTS `venta`;
-CREATE TABLE IF NOT EXISTS `venta` (
+DROP TABLE IF EXISTS venta;
+CREATE TABLE IF NOT EXISTS venta (
   `IdVenta`				INTEGER,
   `Fecha` 				DATE NOT NULL,
   `Fecha_Entrega` 		DATE NOT NULL,
@@ -70,14 +69,14 @@ CREATE TABLE IF NOT EXISTS cliente (
 	col10				VARCHAR(1)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
-DROP TABLE IF EXISTS `canal_venta`;
-CREATE TABLE IF NOT EXISTS `canal_venta` (
+DROP TABLE IF EXISTS canal_venta;
+CREATE TABLE IF NOT EXISTS canal_venta (
   `IdCanal`				INTEGER,
   `Canal` 				VARCHAR(50)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
-DROP TABLE IF EXISTS `tipo_gasto`;
-CREATE TABLE IF NOT EXISTS `tipo_gasto` (
+DROP TABLE IF EXISTS tipo_gasto;
+CREATE TABLE IF NOT EXISTS tipo_gasto (
   `IdTipoGasto` int(11) NOT NULL AUTO_INCREMENT,
   `Descripcion` varchar(100) NOT NULL,
   `Monto_Aproximado` DECIMAL(10,2) NOT NULL,
@@ -113,10 +112,3 @@ CREATE TABLE IF NOT EXISTS empleado (
 	Cargo						VARCHAR(50),
 	Salario2					VARCHAR(30)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
-
--- DROP TABLE IF EXISTS comentarios;
--- CREATE TABLE comentarios (
---     ID_PRODUCTO INT,
---     Comentario TEXT,
---     Fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP
--- );
