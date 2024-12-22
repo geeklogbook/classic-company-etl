@@ -1,5 +1,8 @@
 USE base_negocio_landing;
 
+--If you can't load the data using local data local infile
+--SET GLOBAL local_infile=1;
+
 -- CSV File
 LOAD DATA LOCAL INFILE '/home/ubuntu/data-engineer-playground/data/sources/csv/Clientes.csv'
 INTO TABLE cliente

@@ -11,6 +11,11 @@ def convert_csv_to_parquet(csv_file_path, parquet_file_path=None):
     print(f"Successfully converted {csv_file_path} to {parquet_file_path}")
     return parquet_file_path
 
+def list_files(path):
+    return [file for file in os.listdir(path) if os.path.isfile(os.path.join(path, file))]
 
-csv_path = "/home/ubuntu/data-engineer-playground/data/others/clean_data/Empleados.csv"  
-convert_csv_to_parquet(csv_path, '/home/ubuntu/data-engineer-playground/data/others/parquets/')
+root_path = "./data/others/clean_data/"
+for file in list_files(root_path):
+    full_path = root_path + file
+    print(full_path)
+    convert_csv_to_parquet(full_path, './data/others/parquets/')

@@ -39,16 +39,15 @@ USE base_negocio_today;
 --   -- `Cantidad`			INTEGER
 -- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
--- DROP TABLE IF EXISTS sucursal;
--- CREATE TABLE IF NOT EXISTS sucursal (
--- 	ID			INTEGER,
--- 	Sucursal	VARCHAR(40),
--- 	Domicilio	VARCHAR(150),
--- 	Localidad	VARCHAR(80),
--- 	Provincia	VARCHAR(50),
--- 	Latitud2	VARCHAR(30),
--- 	Longitud2	VARCHAR(30)
--- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+CREATE TABLE `sucursal` (
+  `IdSucursal` int DEFAULT NULL,
+  `Sucursal` varchar(40) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
+  `Domicilio` varchar(150) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
+  `Localidad` varchar(80) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
+  `Provincia` varchar(50) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
+  `Latitud` decimal(13,10) NOT NULL DEFAULT '0.0000000000',
+  `Longitud` decimal(13,10) NOT NULL DEFAULT '0.0000000000'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 
 DROP TABLE IF EXISTS cliente;

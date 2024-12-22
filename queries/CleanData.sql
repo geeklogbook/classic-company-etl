@@ -2,7 +2,6 @@ USE base_negocio_landing;
 -- 1. **Column Renaming**
 ALTER TABLE `empleado` CHANGE `IDEmpleado` `IdEmpleado` INT(11) NULL DEFAULT NULL;
 ALTER TABLE `proveedor` CHANGE `IDProveedor` `IdProveedor` INT(11) NULL DEFAULT NULL;
-ALTER TABLE `sucursal` CHANGE `ID` `IdSucursal` INT(11) NULL DEFAULT NULL;
 ALTER TABLE `producto` CHANGE `IDProducto` `IdProducto` INT(11) NULL DEFAULT NULL;
 ALTER TABLE `producto` CHANGE `Concepto` `Producto` VARCHAR(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NULL DEFAULT NULL;
 
@@ -15,13 +14,6 @@ ALTER TABLE `empleado` DROP `Salario2`;
 ALTER TABLE `producto` ADD `Precio` DECIMAL(15,3) NOT NULL DEFAULT '0' AFTER `Precio2`;
 UPDATE `producto` SET Precio = REPLACE(Precio2,',','.');
 ALTER TABLE `producto` DROP `Precio2`;
-
-ALTER TABLE `sucursal` ADD `Latitud` DECIMAL(13,10) NOT NULL DEFAULT '0' AFTER `Longitud2`,
-                         ADD `Longitud` DECIMAL(13,10) NOT NULL DEFAULT '0' AFTER `Latitud`;
-UPDATE `sucursal` SET Latitud = REPLACE(Latitud2,',','.');
-UPDATE `sucursal` SET Longitud = REPLACE(Longitud2,',','.');
-ALTER TABLE `sucursal` DROP `Latitud2`;
-ALTER TABLE `sucursal` DROP `Longitud2`;
 
 UPDATE `venta` SET `Precio` = 0 WHERE `Precio` = '';
 ALTER TABLE `venta` CHANGE `Precio` `Precio` DECIMAL(15,3) NOT NULL DEFAULT '0';
@@ -45,14 +37,7 @@ UPDATE `proveedor` SET Provincia = 'Sin Dato' WHERE TRIM(Provincia) = "" OR ISNU
 UPDATE `proveedor` SET Pais = 'Sin Dato' WHERE TRIM(Pais) = "" OR ISNULL(Pais);
 UPDATE `proveedor` SET Departamento = 'Sin Dato' WHERE TRIM(Departamento) = "" OR ISNULL(Departamento);
 
-UPDATE `sucursal` SET Domicilio = 'Sin Dato' WHERE TRIM(Domicilio) = "" OR ISNULL(Domicilio);
-UPDATE `sucursal` SET Sucursal = 'Sin Dato' WHERE TRIM(Sucursal) = "" OR ISNULL(Sucursal);
-UPDATE `sucursal` SET Provincia = 'Sin Dato' WHERE TRIM(Provincia) = "" OR ISNULL(Provincia);
-UPDATE `sucursal` SET Localidad = 'Sin Dato' WHERE TRIM(Localidad) = "" OR ISNULL(Localidad);
-
 -- 5. **Normalization to Capitalized Letters**
-
-UPDATE sucursal SET Domicilio = UC_Words(TRIM(Domicilio)), Sucursal = UC_Words(TRIM(Sucursal));
 
 UPDATE proveedor SET Nombre = UC_Words(TRIM(Nombre)), Domicilio = UC_Words(TRIM(Domicilio));
 
@@ -97,8 +82,8 @@ UPDATE empleado SET Sucursal = 'Mendoza2' WHERE Sucursal = 'Mendoza 2';
 
 ALTER TABLE `empleado` ADD `IdSucursal` INT NULL DEFAULT '0' AFTER `Sucursal`;
 
-UPDATE empleado e JOIN sucursal s
-	ON (e.Sucursal = s.Sucursal)
+UPDATE empleado e 
+JOIN sucursal s ON (e.Sucursal = s.Sucursal)
 SET e.IdSucursal = s.IdSucursal;
 
 ALTER TABLE `empleado` DROP `Sucursal`;
@@ -134,7 +119,7 @@ INSERT INTO sector (Sector)
 SELECT DISTINCT Sector FROM empleado WHERE Sector NOT IN (SELECT Sector FROM sector);
 
 ALTER TABLE `empleado` ADD `IdCargo` INT NULL AFTER `Cargo`, 
-                         ADD `IdSector` INT NULL AFTER `Sector`;
+                       ADD `IdSector` INT NULL AFTER `Sector`;
 
 UPDATE empleado e JOIN cargo c ON (e.Cargo = c.Cargo) SET e.IdCargo = c.IdCargo;
 
