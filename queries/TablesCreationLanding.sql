@@ -1,9 +1,8 @@
--- Active: 1733584034222@@127.0.0.1@3307
+-- Active: 1733584034222@@127.0.0.1@3307@mysql
 DROP DATABASE IF EXISTS base_negocio_landing;
 CREATE DATABASE IF NOT EXISTS base_negocio_landing;
 USE base_negocio_landing;
 
-DROP TABLE IF EXISTS gasto;
 CREATE TABLE IF NOT EXISTS gasto (
   	`IdGasto` 		INTEGER,
   	`IdSucursal` 	INTEGER,
@@ -12,7 +11,6 @@ CREATE TABLE IF NOT EXISTS gasto (
   	`Monto` 		DECIMAL(10,2)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
-DROP TABLE IF EXISTS compra;
 CREATE TABLE IF NOT EXISTS compra (
   `IdCompra`			INTEGER,
   `Fecha` 				DATE,
@@ -22,7 +20,6 @@ CREATE TABLE IF NOT EXISTS compra (
   `IdProveedor`			INTEGER
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
-DROP TABLE IF EXISTS venta;
 CREATE TABLE IF NOT EXISTS venta (
   `IdVenta`				INTEGER,
   `Fecha` 				DATE NOT NULL,
@@ -34,11 +31,8 @@ CREATE TABLE IF NOT EXISTS venta (
   `IdProducto`			INTEGER,
   `Precio`				VARCHAR(30),
   `Cantidad`			VARCHAR(30)
-  -- `Precio`			DECIMAL(10,2),
-  -- `Cantidad`			INTEGER
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
-DROP TABLE IF EXISTS sucursal;
 CREATE TABLE IF NOT EXISTS sucursal (
 	ID			INTEGER,
 	Sucursal	VARCHAR(40),
@@ -49,8 +43,6 @@ CREATE TABLE IF NOT EXISTS sucursal (
 	Longitud2	VARCHAR(30)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
-
-DROP TABLE IF EXISTS cliente;
 CREATE TABLE IF NOT EXISTS cliente (
 	ID					INTEGER,
 	Provincia			VARCHAR(50),
@@ -69,13 +61,11 @@ CREATE TABLE IF NOT EXISTS cliente (
 	col10				VARCHAR(1)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
-DROP TABLE IF EXISTS canal_venta;
 CREATE TABLE IF NOT EXISTS canal_venta (
   `IdCanal`				INTEGER,
   `Canal` 				VARCHAR(50)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
-DROP TABLE IF EXISTS tipo_gasto;
 CREATE TABLE IF NOT EXISTS tipo_gasto (
   `IdTipoGasto` int(11) NOT NULL AUTO_INCREMENT,
   `Descripcion` varchar(100) NOT NULL,
@@ -83,7 +73,6 @@ CREATE TABLE IF NOT EXISTS tipo_gasto (
   PRIMARY KEY (`IdTipoGasto`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
-DROP TABLE IF EXISTS proveedor;
 CREATE TABLE IF NOT EXISTS proveedor (
 	IDProveedor		INTEGER,
 	Nombre			VARCHAR(80),
@@ -94,7 +83,6 @@ CREATE TABLE IF NOT EXISTS proveedor (
 	Departamento	VARCHAR(80)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
-DROP TABLE IF EXISTS producto;
 CREATE TABLE IF NOT EXISTS producto (
 	IDProducto					INTEGER,
 	Concepto					VARCHAR(100),
@@ -102,7 +90,6 @@ CREATE TABLE IF NOT EXISTS producto (
 	Precio2						VARCHAR(30)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
-DROP TABLE IF EXISTS empleado;
 CREATE TABLE IF NOT EXISTS empleado (
 	IDEmpleado					INTEGER,
 	Apellido					VARCHAR(100),

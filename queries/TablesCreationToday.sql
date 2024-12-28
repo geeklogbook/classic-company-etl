@@ -1,4 +1,3 @@
--- Active: 1733584034222@@127.0.0.1@3307
 DROP DATABASE IF EXISTS base_negocio_today;
 CREATE DATABASE IF NOT EXISTS base_negocio_today;
 USE base_negocio_today;
@@ -9,12 +8,12 @@ USE base_negocio_today;
 --   	`IdGasto` 		INTEGER,
 --   	`IdSucursal` 	INTEGER,
 --   	`IdTipoGasto` 	INTEGER,
---     `Fecha`			DATE,
+--    `Fecha`			DATE,
 --   	`Monto` 		DECIMAL(10,2)
 -- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
--- DROP TABLE IF EXISTS compra;
--- CREATE TABLE IF NOT EXISTS compra (
+--  DROP TABLE IF EXISTS compra;
+--  CREATE TABLE IF NOT EXISTS compra (
 --   `IdCompra`			INTEGER,
 --   `Fecha` 				DATE,
 --   `IdProducto`			INTEGER,
@@ -35,8 +34,6 @@ USE base_negocio_today;
 --   `IdProducto`			INTEGER,
 --   `Precio`				VARCHAR(30),
 --   `Cantidad`			VARCHAR(30)
---   -- `Precio`			DECIMAL(10,2),
---   -- `Cantidad`			INTEGER
 -- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 CREATE TABLE `sucursal` (
@@ -50,7 +47,6 @@ CREATE TABLE `sucursal` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 
-DROP TABLE IF EXISTS cliente;
 CREATE TABLE `cliente` (
   `IdCliente` int NOT NULL,
   `Provincia` varchar(50) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
@@ -74,7 +70,7 @@ CREATE TABLE `cliente` (
 --   `Canal` 				VARCHAR(50)
 -- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
-CREATE TABLE `tipo_gasto` (
+CREATE TABLE tipo_gasto (
   `IdTipoGasto` int NOT NULL AUTO_INCREMENT,
   `Tipo_Gasto` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
   `Monto_Aproximado` decimal(10,2) NOT NULL,
@@ -110,3 +106,15 @@ CREATE TABLE `tipo_gasto` (
 -- 	Cargo						VARCHAR(50),
 -- 	Salario2					VARCHAR(30)
 -- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+CREATE TABLE IF NOT EXISTS `cargo` (
+  `IdCargo` integer NOT NULL AUTO_INCREMENT,
+  `Cargo` varchar(50) NOT NULL,
+  PRIMARY KEY (`IdCargo`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+CREATE TABLE IF NOT EXISTS `sector` (
+  `IdSector` integer NOT NULL AUTO_INCREMENT,
+  `Sector` varchar(50) NOT NULL,
+  PRIMARY KEY (`IdSector`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
