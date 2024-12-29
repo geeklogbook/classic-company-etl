@@ -90,12 +90,24 @@ CREATE TABLE IF NOT EXISTS producto (
 	Precio2						VARCHAR(30)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
-CREATE TABLE IF NOT EXISTS empleado (
-	IDEmpleado					INTEGER,
-	Apellido					VARCHAR(100),
-	Nombre						VARCHAR(100),
-	Sucursal					VARCHAR(50),
-	Sector						VARCHAR(50),
-	Cargo						VARCHAR(50),
-	Salario2					VARCHAR(30)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+CREATE TABLE `empleado` (
+  `IdEmpleado` int DEFAULT NULL,
+  `Apellido` varchar(100) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
+  `Nombre` varchar(100) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
+  `IdSucursal` int DEFAULT '0',
+  `IdSector` int DEFAULT NULL,
+  `IdCargo` int DEFAULT NULL,
+  `Salario` decimal(10,2) NOT NULL DEFAULT '0.00'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci
+
+CREATE TABLE `cargo` (
+  `IdCargo` int NOT NULL AUTO_INCREMENT,
+  `Cargo` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL,
+  PRIMARY KEY (`IdCargo`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+CREATE TABLE `sector` (
+  `IdSector` int NOT NULL AUTO_INCREMENT,
+  `Sector` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL,
+  PRIMARY KEY (`IdSector`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;

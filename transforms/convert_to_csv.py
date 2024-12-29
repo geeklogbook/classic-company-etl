@@ -1,7 +1,7 @@
 import pandas as pd
 import os
 
-files = ['CanalDeVenta.xlsx', 'Empleados.xls', 'productos.xlsx', 'Proveedores.xlsx']
+files = ['CanalDeVenta.xlsx', 'productos.xlsx', 'Proveedores.xlsx']
 
 input_dir = os.path.join('.', 'data', 'sources', 'excels')
 output_dir = os.path.join('.', 'data', 'outputs', 'converted', 'csv')

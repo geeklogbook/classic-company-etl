@@ -30,3 +30,5 @@ SELECT
   Usuario_Ultima_Modificacion,
   Marca_Baja
 FROM base_negocio_landing.cliente;
+
+DROP TABLE base_negocio_landing.cliente;
