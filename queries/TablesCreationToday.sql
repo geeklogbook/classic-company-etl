@@ -2,19 +2,18 @@ DROP DATABASE IF EXISTS base_negocio_today;
 CREATE DATABASE IF NOT EXISTS base_negocio_today;
 USE base_negocio_today;
 
--- DROP TABLE IF EXISTS venta;
--- CREATE TABLE IF NOT EXISTS venta (
---   `IdVenta`				INTEGER,
---   `Fecha` 				DATE NOT NULL,
---   `Fecha_Entrega` 		DATE NOT NULL,
---   `IdCanal`				INTEGER, 
---   `IdCliente`			INTEGER, 
---   `IdSucursal`			INTEGER,
---   `IdEmpleado`			INTEGER,
---   `IdProducto`			INTEGER,
---   `Precio`				VARCHAR(30),
---   `Cantidad`			VARCHAR(30)
--- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+CREATE TABLE venta (
+  IdVenta       int DEFAULT NULL,
+  Fecha         date NOT NULL,
+  Fecha_Entrega date NOT NULL,
+  IdCanal       int DEFAULT NULL,
+  IdCliente     int DEFAULT NULL,
+  IdSucursal    int DEFAULT NULL,
+  IdEmpleado    int DEFAULT NULL,
+  IdProducto    int DEFAULT NULL,
+  Precio        decimal(15,3) NOT NULL DEFAULT '0.000',
+  Cantidad      int NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci
 
 CREATE TABLE `sucursal` (
   `IdSucursal` int DEFAULT NULL,
@@ -44,51 +43,49 @@ CREATE TABLE `cliente` (
   `Marca_Baja` tinyint DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
--- DROP TABLE IF EXISTS proveedor;
--- CREATE TABLE IF NOT EXISTS proveedor (
--- 	IDProveedor		INTEGER,
--- 	Nombre			  VARCHAR(80),
--- 	Domicilio		  VARCHAR(150),
--- 	Ciudad			  VARCHAR(80),
--- 	Provincia		  VARCHAR(50),
--- 	Pais			    VARCHAR(20),
--- 	Departamento	VARCHAR(80)
--- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+CREATE TABLE IF NOT EXISTS proveedor (
+	IdProveedor		INTEGER,
+	Nombre			  VARCHAR(80),
+	Domicilio		  VARCHAR(150),
+	Ciudad			  VARCHAR(80),
+	Provincia		  VARCHAR(50),
+	Pais			    VARCHAR(20),
+	Departamento	VARCHAR(80)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
--- DROP TABLE IF EXISTS producto;
--- CREATE TABLE IF NOT EXISTS producto (
--- 	IDProducto					INTEGER,
--- 	Concepto					VARCHAR(100),
--- 	Tipo						VARCHAR(50),
--- 	Precio2						VARCHAR(30)
--- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
-
-CREATE TABLE `empleado` (
-  `IdEmpleado` int DEFAULT NULL,
-  `Apellido` varchar(100) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
-  `Nombre` varchar(100) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
-  `IdSucursal` int DEFAULT '0',
-  `IdSector` int DEFAULT NULL,
-  `IdCargo` int DEFAULT NULL,
-  `Salario` decimal(10,2) NOT NULL DEFAULT '0.00'
+CREATE TABLE producto (
+  IdProducto  int DEFAULT NULL,
+  Producto    varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci DEFAULT NULL,
+  Categoria        varchar(50) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
+  Precio      decimal(15,3) NOT NULL DEFAULT '0.000'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci
+
+CREATE TABLE empleado (
+  IdEmpleado     int DEFAULT NULL,
+  Apellido       varchar(100) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
+  Nombre         varchar(100) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
+  IdSucursal     int DEFAULT '0',
+  IdSector       int DEFAULT NULL,
+  IdCargo        int DEFAULT NULL,
+  Salario        decimal(10,2) NOT NULL DEFAULT '0.00'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 -- NO CHANGES
 CREATE TABLE IF NOT EXISTS gasto (
-  	`IdGasto` 		INTEGER,
-  	`IdSucursal` 	INTEGER,
-  	`IdTipoGasto` INTEGER,
-    `Fecha`			  DATE,
-  	`Monto` 		  DECIMAL(10,2)
+  	IdGasto 		INTEGER,
+  	IdSucursal 	INTEGER,
+  	IdTipoGasto INTEGER,
+    Fecha			  DATE,
+  	Monto 		  DECIMAL(10,2)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
  CREATE TABLE IF NOT EXISTS compra (
-  `IdCompra`			INTEGER,
-  `Fecha` 				DATE,
-  `IdProducto`		INTEGER,
-  `Cantidad`			INTEGER,
-  `Precio`				DECIMAL(10,2),
-  `IdProveedor`		INTEGER
+  IdCompra			INTEGER,
+  Fecha 				DATE,
+  IdProducto		INTEGER,
+  Cantidad			INTEGER,
+  Precio				DECIMAL(10,2),
+  IdProveedor		INTEGER
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 
@@ -114,3 +111,16 @@ CREATE TABLE IF NOT EXISTS `sector` (
   `Sector` varchar(50) NOT NULL,
   PRIMARY KEY (`IdSector`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+CREATE TABLE IF NOT EXISTS errores_venta (
+  IdVenta        INTEGER,
+  Fecha          DATE NOT NULL,
+  Fecha_Entrega  DATE NOT NULL,
+  IdCliente      INTEGER, 
+  IdSucursal     INTEGER,
+  IdEmpleado     INTEGER,
+  IdProducto     INTEGER,
+  Precio         FLOAT,
+  Cantidad       INTEGER,
+  Motivo         INTEGER
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
