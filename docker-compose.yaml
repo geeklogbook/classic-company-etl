@@ -74,6 +74,7 @@ services:
       - AIRFLOW_WEBSERVER_HOST=airflow
 
   #User:user - pass: bitnami
+  #sudo chown -R ubuntu /home/ubuntu/data-engineer-playground/dags
   airflow:
     image: docker.io/bitnami/airflow:2
     environment:
