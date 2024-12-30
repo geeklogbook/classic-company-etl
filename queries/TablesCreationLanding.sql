@@ -1,4 +1,4 @@
--- Active: 1733584034222@@127.0.0.1@3307@base_negocio_landing
+-- Active: 1733584034222@@127.0.0.1@3307@mysql
 DROP DATABASE IF EXISTS base_negocio_landing;
 CREATE DATABASE IF NOT EXISTS base_negocio_landing;
 USE base_negocio_landing;

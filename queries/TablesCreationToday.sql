@@ -13,7 +13,7 @@ CREATE TABLE venta (
   IdProducto    int DEFAULT NULL,
   Precio        decimal(15,3) NOT NULL DEFAULT '0.000',
   Cantidad      int NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 CREATE TABLE `sucursal` (
   `IdSucursal` int DEFAULT NULL,
@@ -58,7 +58,7 @@ CREATE TABLE producto (
   Producto    varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci DEFAULT NULL,
   Categoria        varchar(50) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
   Precio      decimal(15,3) NOT NULL DEFAULT '0.000'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 CREATE TABLE empleado (
   IdEmpleado     int DEFAULT NULL,
@@ -120,7 +120,8 @@ CREATE TABLE IF NOT EXISTS errores_venta (
   IdSucursal     INTEGER,
   IdEmpleado     INTEGER,
   IdProducto     INTEGER,
-  Precio         FLOAT,
-  Cantidad       INTEGER,
-  Motivo         INTEGER
+  Precio         VARCHAR(50),
+  Cantidad       VARCHAR(50),
+  Motivo         VARCHAR(50)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
