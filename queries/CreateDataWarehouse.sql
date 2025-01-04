@@ -32,7 +32,7 @@ CREATE TABLE dim_producto (
 CREATE TABLE dim_fecha (
     FechaKey INT PRIMARY KEY,
     Fecha DATE,
-    Año INT,
+    Anio INT,
     Mes INT,
     Día INT,
     Trimestre INT,
